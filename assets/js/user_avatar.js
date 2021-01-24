@@ -8,14 +8,14 @@ $(function () {
         // 指定预览区域
         preview: '.img-preview'
     }
-
+    var layer = layui.layer
     // 创建裁剪区域
     $image.cropper(options)
-
-    $('#btnChooseImage').on('click', function () {
+    // 模拟文件上传按钮的功能
+    $('#shangChuan').on('click', function () {
         $('#file').click()
     })
-
+    // 文件选择框绑定change事件
     $('#file').on('change', function (e) {
         // 获取用户选择的文件
         var filelist = e.target.files
@@ -32,8 +32,9 @@ $(function () {
             .attr('src', imgURL) // 重新设置图片路径
             .cropper(options) // 重新初始化裁剪区域
     })
-    var layer = layui.layer
+    // 发送图片到后台 并上传头像
     $('#queDing').on('click', function () {
+        // 获取裁剪后的图片
         var dataURL = $image
             .cropper('getCroppedCanvas', {
                 // 创建一个 Canvas 画布
